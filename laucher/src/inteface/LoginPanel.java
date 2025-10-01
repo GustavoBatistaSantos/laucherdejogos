@@ -1,18 +1,15 @@
 package inteface;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class LoginPanel extends JPanel implements ActionListener{// extende a jpanel e implementa a interface Action listener que possui o método actionPerformed
-    private JPanel telas;//atributo
-    private  CardLayout controleTela;
-    public LoginPanel(JPanel telas) { //metodo contrutor
-        this.telas = telas;
-        this.controleTela =(CardLayout) telas.getLayout();// converte o telas para cardlayout e adiciona o metodo de trocar telas quando apertar o botão
+public class LoginPanel extends TelaPanel{// extende a TelaPanel
+    private JButton botaoLogin;//método JButton
+    public LoginPanel(JPanel telas, JFrame janela) { //metodo contrutor
+        super(telas,janela);
         JLabel mensagem = new JLabel("Conteúdo do Login Panel");//CRIA UMA MENSAGEM
         JButton botao = new JButton("Fazer login"); //CRIA UM BOTÃO
         botao.addActionListener(this);//chama o método override
@@ -21,9 +18,8 @@ public class LoginPanel extends JPanel implements ActionListener{// extende a jp
         this.add(botao);// ADICIONA O BOTÃO NA TELA
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e){
-        controleTela.show(telas,"Tela Principal");//metodo para trocar de tela quando clicar
+    public void executarBotao(ActionEvent e){
+        trocarTela("Tela Principal");
     }
 }
 
